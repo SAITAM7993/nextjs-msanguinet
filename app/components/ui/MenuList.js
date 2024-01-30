@@ -12,7 +12,7 @@ const MenuList = () => {
         <ul className='md:flex md:items-center'>
           {links.map((link) => (
             <li
-              className=' mx-3 my-2 hover:scale-110'
+              className=' mx-3 my-2 link'
               key={link.name}
             >
               <a

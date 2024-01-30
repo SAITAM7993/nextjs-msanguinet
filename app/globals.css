@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 body {
-  background: #e4e6ea;
+  background: #ebedf5;
 }
 /* con esto estilo clases custom con propiedades tailwind */
 @layer components {
   .card {
-    @apply basis-72 shadow-lg rounded bg-white mb-auto rounded-2xl hover:border-sky-700 hover:border-2;
+    @apply basis-72 shadow-lg rounded bg-white mb-auto rounded-2xl border border-slate-300 hover:border-2;
   }
 
   .card-body {
@@ -38,17 +38,17 @@ body {
   }
 
   .selected {
-    @apply font-semibold text-sky-700;
+    @apply font-semibold text-lg;
   }
 
   .link {
-    @apply text-black text-lg hover:text-sky-700;
+    @apply hover:text-sky-700 uppercase tracking-wide hover:scale-105 px-3 hover:font-semibold hover:underline hover:underline-offset-8;
   }
 
   .button-primary {
-    @apply rounded-xl py-2 px-4 mr-2 text-white bg-black hover:bg-sky-500 active:bg-sky-900 py-3 my-3 font-semibold;
+    @apply rounded-xl py-2 px-4 mr-2 text-white bg-black hover:bg-sky-700 active:bg-sky-900 py-3 my-3 font-semibold;
   }
   .button-secondary {
-    @apply border rounded-xl py-2 px-4 mr-2 bg-white hover:bg-black hover:text-white py-1 font-semibold;
+    @apply border rounded-xl py-2 px-4 mr-2 bg-white hover:bg-sky-700 active:bg-sky-900 hover:text-white py-1 font-semibold;
   }
 }

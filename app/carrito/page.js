@@ -7,10 +7,10 @@ const Carrito = () => {
     <>
       <div className='h-screen py-8'>
         <div className='container mx-auto px-4'>
-          <h1 className='text-2xl font-semibold mb-4'>Carrito</h1>
+          <h1 className='title1'>Carrito</h1>
           <div className='flex flex-col md:flex-row gap-4'>
             <div className='md:w-3/4'>
-              <div className='bg-white rounded-lg shadow-md p-6 mb-4'>
+              <div className='bg-white rounded-lg shadow-md p-6 mb-4    border border-slate-300'>
                 <table className='w-full'>
                   <thead>
                     <tr>
@@ -54,7 +54,7 @@ const Carrito = () => {
                 </table>
               </div>
             </div>
-            <div className='md:w-1/4'>
+            <div className='md:w-1/4    border border-slate-300'>
               <div className='bg-white rounded-lg shadow-md p-6'>
                 <h2 className='text-lg font-semibold mb-4'>Resumen</h2>
                 <div className='flex justify-between mb-2'>

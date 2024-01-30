@@ -1,12 +1,15 @@
-import { mockData } from '../../data/products';
+// import { mockData } from '../../data/products';
 import ProductCard from './ProductCard';
 
-const ProductsList = ({ categoria }) => {
-  //se hace un filtro de la categoria que nos llegue por parm, si es todos no se filtra y se muestra todo, sino filtra por la cat seleccionada
-  const items =
-    categoria === 'todos'
-      ? mockData
-      : mockData.filter((item) => item.type === categoria);
+const ProductsList = async ({ categoria }) => {
+  //hago fetch dinamico
+  const items = await fetch(
+    `http://localhost:3000/api/productos/${categoria}`,
+    {
+      cache: 'no-store',
+      next: { tags: ['productos'] }, //esta peticion se va a catchear con el tag productos
+    }
+  ).then((r) => r.json());
 
   return (
     <section className='container m-auto flex justify-center items-center gap-12 flex-wrap'>

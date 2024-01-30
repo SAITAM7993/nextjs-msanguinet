@@ -6,7 +6,7 @@ const Nosotros = () => {
   return (
     <>
       <main className='container m-auto'>
-        <section className='flex items-center bg-white rounded-3xl shadow-3xl h-100 p-12'>
+        <section className='flex items-center bg-white rounded-3xl shadow-3xl h-100 p-12 border border-slate-300'>
           <div className='justify-center flex-1 max-w-6xl py-4 mx-auto lg:py-6 md:px-6'>
             <div className='flex flex-wrap items-center '>
               <div className='w-full px-4 mb-10 lg:w-1/2 lg:mb-0'>

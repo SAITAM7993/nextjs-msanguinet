@@ -88,12 +88,12 @@ export const mockData = [
   },
 
   {
-    title: 'iPhone 13 Ultra Pro, 512GB, black"',
+    title: 'iPhone 13 Ultra Pro, 512GB, black',
     description:
       'Includes a brand new, generic charging cable that is certified Mfi (Made for iPhone) and a brand new, generic wall plug that is UL certified for performance and safety. Also includes a SIM tray removal tool but does not come with headphones or a SIM card (SAURONS PHONE)',
     inStock: '10',
     price: '1999',
-    slug: 'iphone-13pro-black-123',
+    slug: 'iphone-13-ultra-pro-black-123',
     image: 'phone/iphone13Negro1.webp',
     type: 'phone',
   },
@@ -104,7 +104,7 @@ export const mockData = [
       'Includes a brand new, generic charging cable that is certified Mfi (Made for iPhone) and a brand new, generic wall plug that is UL certified for performance and safety. Also includes a SIM tray removal tool but does not come with headphones or a SIM card (BARBIES PHONE)',
     inStock: '5',
     price: '5999',
-    slug: 'iphone-13pro-black-123',
+    slug: 'iphone-13pro-pink-1234',
     image: 'phone/iphone13Rosa1.webp',
     type: 'phone',
   },

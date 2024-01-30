@@ -4,7 +4,7 @@ import CartWidget from './CartWidget';
 import Profile from './Profile';
 const Header = () => {
   return (
-    <nav className='shadow-lg flex-no-wrap fixed top-0 md:flex w-full md:items-center lg:justify-between bg-white lg:flex-wrap lg:py-3'>
+    <nav className='shadow-lg flex-no-wrap fixed top-0 md:flex w-full md:items-center lg:justify-between bg-white lg:flex-wrap lg:py-3 border border-slate-300'>
       <div className='flex items-center'>
         {/* <Image
           src={'/eipi-logo3.png'}
