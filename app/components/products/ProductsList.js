@@ -12,7 +12,7 @@ const ProductsList = async ({ categoria }) => {
   ).then((r) => r.json());
 
   return (
-    <section className='container m-auto flex justify-center items-center gap-12 flex-wrap'>
+    <section className='container flex justify-between items-center gap-10 flex-wrap'>
       {items.map((item) => (
         <ProductCard
           key={item.slug}

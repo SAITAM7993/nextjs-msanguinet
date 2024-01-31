@@ -1,3 +1,4 @@
+import Link from 'next/link';
 const MenuList = () => {
   let links = [
     { name: 'Inicio', link: '/' },
@@ -11,18 +12,13 @@ const MenuList = () => {
       <div>
         <ul className='md:flex md:items-center'>
           {links.map((link) => (
-            <li
+            <Link
+              href={link.link}
               className=' mx-3 my-2 link'
               key={link.name}
             >
-              <a
-                className='
-               link'
-                href={link.link}
-              >
-                {link.name}
-              </a>
-            </li>
+              {link.name}
+            </Link>
           ))}
         </ul>
       </div>

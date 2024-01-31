@@ -36,7 +36,7 @@ const ContactForm = () => {
           </label>
           <input
             name='name'
-            className='w-full px-3 py-2 border rounded-lg bg-slate-50'
+            className='w-full px-3 py-2 border rounded-lg bg-gray-50'
             placeholder='Matias Sanguinet'
             required
             type='text'
@@ -52,7 +52,7 @@ const ContactForm = () => {
           </label>
           <input
             name='phone'
-            className='w-full px-3 py-2 border rounded-lg bg-slate-50'
+            className='w-full px-3 py-2 border rounded-lg bg-gray-50'
             required
             placeholder='099027999'
             type='tel'
@@ -68,7 +68,7 @@ const ContactForm = () => {
           </label>
           <input
             name='mail'
-            className='w-full px-3 py-2 border rounded-lg bg-slate-50'
+            className='w-full px-3 py-2 border rounded-lg bg-gray-50'
             required
             placeholder='mail@mail.com'
             type='email'
@@ -85,7 +85,7 @@ const ContactForm = () => {
           </label>
           <textarea
             name='message'
-            className='w-full px-3 py-2 border rounded-lg bg-slate-50'
+            className='w-full px-3 py-2 border rounded-lg bg-gray-50'
             required
             placeholder='Tu mensaje ...'
             type='text'

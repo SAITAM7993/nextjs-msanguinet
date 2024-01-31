@@ -6,8 +6,6 @@ import QtySelector from './QtySelector';
 import GoBack from '../ui/GoBack';
 
 const ProductDetail = async ({ slug }) => {
-  // const item = mockData.find((p) => p.slug === slug); //fitrlo el producto por el id slug
-  //ahora es dinamico y usa route handler
   const item = await fetch(`http://localhost:3000/api/producto/${slug}`, {
     cache: 'no-store',
     next: { revalidate: 0 }, //para que no se cachee una la respuesta y siempre este actualizada por si varia el stock

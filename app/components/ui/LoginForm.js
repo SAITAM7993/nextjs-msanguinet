@@ -14,7 +14,7 @@ const LoginForm = () => {
               Mail
             </label>
             <input
-              className='w-full px-3 py-2 border rounded-lg bg-slate-50'
+              className='w-full px-3 py-2 border rounded-lg bg-gray-50'
               required
               placeholder='mail@mail.com'
               type='email'
@@ -28,7 +28,7 @@ const LoginForm = () => {
               Contraseña
             </label>
             <input
-              className='w-full px-3 py-2 border rounded-lg bg-slate-50 '
+              className='w-full px-3 py-2 border rounded-lg bg-gray-50 '
               required
               placeholder='********'
               type='password'

@@ -1,13 +1,20 @@
+'use client';
 import Link from 'next/link';
+import { useCartContext } from '../context/CartContext';
 
 const CartWidget = () => {
+  const { totalQty } = useCartContext();
   return (
     <Link href={'/carrito'}>
       <div className='relative'>
         <div className='absolute left-4 bottom-3'>
-          <p className='flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white'>
-            7
-          </p>
+          {totalQty() != 0 ? (
+            <p className='flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white '>
+              {totalQty()}
+            </p>
+          ) : (
+            ''
+          )}
         </div>
         <svg
           xmlns='http://www.w3.org/2000/svg'

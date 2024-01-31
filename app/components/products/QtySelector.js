@@ -3,29 +3,60 @@
 import { useState } from 'react';
 import Counter from '../ui/Counter';
 import Boton from '../ui/Boton';
+import Link from 'next/link';
+import Alert from '../ui/Notification';
+import { useCartContext } from '../context/CartContext';
+import Notification from '../ui/Notification';
+import { useContext } from 'react';
+import NotificationContext from '../context/NotificationContext';
 
 const QtySelector = ({ item }) => {
+  const { notificationHandler } = useContext(NotificationContext);
+  function handlerNotificationOK() {
+    notificationHandler({
+      type: 'success',
+      message: 'Producto agregado correctamente',
+    });
+  }
+  function handlerNotificationERROR() {
+    notificationHandler({ type: 'error', message: 'Producto ya fue agregado' });
+  }
+
+  const { addToCart } = useCartContext();
   const [quantity, setQuantity] = useState(1);
   const handleAdd = () => {
-    console.log({
-      ...item,
-      quantity,
-    });
+    {
+      addToCart({ ...item, quantity }) == false
+        ? handlerNotificationOK()
+        : handlerNotificationERROR();
+    }
   };
   return (
-    <div className='flex flex-col gap-5 mt-6'>
-      <Counter
-        max={item.inStock}
-        counter={quantity}
-        setCounter={setQuantity}
-      />
-      <Boton
-        className='button-primary'
-        onClick={handleAdd}
-      >
-        Agregar al carrito
-      </Boton>
-    </div>
+    <>
+      <Notification />
+      <div className='flex flex-row gap-3 mt-2 py-5'>
+        <Counter
+          max={item.inStock}
+          counter={quantity}
+          setCounter={setQuantity}
+        />
+
+        <Boton
+          className='button-primary w-full px-3'
+          onClick={handleAdd}
+        >
+          Agregar
+        </Boton>
+        <Link href={'/carrito'}>
+          <Boton
+            className='button-primary w-full px-3'
+            onClick={handleAdd}
+          >
+            Comprar
+          </Boton>
+        </Link>
+      </div>
+    </>
   );
 };
 export default QtySelector;
