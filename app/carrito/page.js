@@ -23,10 +23,10 @@ const Carrito = () => {
           </div>
         ) : (
           <div className='container mx-auto px-4'>
-            <h1 className='title1'>Carrito</h1>
+            <h2 className='title1'>Carrito</h2>
             <div className='flex flex-col md:flex-row gap-4'>
               <div className='md:w-3/4'>
-                <div className='bg-white rounded-lg shadow-md p-6 mb-4    border border-slate-300'>
+                <div className='bg-white rounded-lg shadow-md p-6 mb-4 border border-slate-300'>
                   <table className='w-full'>
                     <thead>
                       <tr>

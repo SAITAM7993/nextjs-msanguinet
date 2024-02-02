@@ -55,7 +55,12 @@ body {
   .button-secondary {
     @apply border rounded-xl my-2 py-2 px-3 bg-white hover:bg-sky-700 active:bg-sky-900 hover:text-white font-semibold;
   }
-
+  .button-primary-small {
+    @apply rounded-2xl px-3 text-white bg-black hover:bg-sky-700 active:bg-sky-900 py-2 font-semibold text-sm;
+  }
+  .button-secondary-small {
+    @apply border rounded-2xl py-2 px-2 bg-white hover:bg-sky-700 active:bg-sky-900 hover:text-white font-semibold text-sm;
+  }
   .disabled-link {
     @apply pointer-events-none;
   }

@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
         <NotificationProvider>
           <CartProvider>
             <Header />
-            <div className='container lg:m-44 '>{children}</div>
+            <div className='container m-auto my-32 '>{children}</div>
             <Footer />
           </CartProvider>
         </NotificationProvider>

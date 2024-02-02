@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Boton from './Boton';
-
+import GoBack from './GoBack';
 const ContactForm = () => {
   const [values, setValues] = useState({
     name: '',
@@ -100,6 +100,7 @@ const ContactForm = () => {
           >
             Enviar
           </Boton>
+          <GoBack className='button-secondary w-full' />
         </div>
       </form>
     </div>
