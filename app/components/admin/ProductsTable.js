@@ -4,6 +4,7 @@ import GoBack from '../ui/GoBack';
 const ProductsTable = async () => {
   const items = await fetch(`http://localhost:3000/api/productos/todos`, {
     cache: 'no-store',
+    next: { tags: ['productos'] },
   }).then((r) => r.json());
 
   return (
@@ -77,12 +78,17 @@ const ProductsTable = async () => {
               className='border-b'
             >
               <td className='p-2 '>
-                <Image
-                  src={`/images/products/${item.image}`}
-                  alt={item.title}
-                  width={100}
-                  height={100}
-                ></Image>
+                {item.slug == 1 ? (
+                  <Image
+                    // src={`/images/products/${item.image}`}
+                    src={item.image}
+                    alt={item.title}
+                    width={100}
+                    height={100}
+                  ></Image>
+                ) : (
+                  ''
+                )}
               </td>
               <td className='p-2 truncate max-w-prose'>{item.title}</td>
               <td className='p-2'>{item.price}</td>
@@ -108,7 +114,7 @@ const ProductsTable = async () => {
               <td className=''>
                 <Link
                   className='button-primary-small bg-red-600'
-                  href={`/admin/edit/${item.slug}`}
+                  href={`/admin/delete/${item.slug}`}
                 >
                   Eliminar
                 </Link>

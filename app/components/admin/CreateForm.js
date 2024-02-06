@@ -1,14 +1,15 @@
 'use client';
 import { useState } from 'react';
-import Boton from '../Boton';
-import GoBack from '../GoBack';
+import Boton from '../ui/Boton';
+import GoBack from '../ui/GoBack';
 //para crear producto en firebase
 import { setDoc, doc } from 'firebase/firestore';
-import { db } from '@/app/firebase/config';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { db, storage } from '@/app/firebase/config';
 
 import { useContext } from 'react';
-import NotificationContext from '../../context/NotificationContext';
-import Notification from '../Notification';
+import NotificationContext from '../context/NotificationContext';
+import Notification from '../ui/Notification';
 
 const CreateForm = () => {
   const { notificationHandler } = useContext(NotificationContext);
@@ -18,9 +19,20 @@ const CreateForm = () => {
       message: 'Producto agregado correctamente',
     });
   }
-  const createProcduct = async (values) => {
+  const createProcduct = async (values, file) => {
+    //para img, subimos un doc a firestore, es una url a un archivo.
+    //subimos una img, obtenemos la url y luego guardamos esa url en el atr image de productos
+    const storageRef = ref(storage, values.slug);
+    // const metadata = {
+    //   contentType: 'image/webp',
+    // };
+    // const fileSnapshot = await uploadBytes(storageRef, file, metadata);
+    const fileSnapshot = await uploadBytes(storageRef, file);
+    const fileURL = await getDownloadURL(fileSnapshot.ref);
+    //fin para img
+
     const docRef = doc(db, 'productos', values.slug);
-    return setDoc(docRef, { ...values })
+    return setDoc(docRef, { ...values, image: fileURL })
       .then(() => handlerNotificationOK())
       .catch((err) => {
         console.log('Error: ', err);
@@ -37,6 +49,8 @@ const CreateForm = () => {
     slug: '',
   });
 
+  const [file, setFile] = useState(null);
+
   const handleChange = (e) => {
     setValues({
       ...values,
@@ -46,7 +60,7 @@ const CreateForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createProcduct(values);
+    await createProcduct(values, file);
   };
   return (
     <>
@@ -169,6 +183,9 @@ const CreateForm = () => {
               className='w-full px-3 py-2 border rounded-lg bh-gray-800 focus:border-blue-500'
               required
               type='file'
+              accept='.png, .jpg, .webp'
+              name='image'
+              onChange={(e) => setFile(e.target.files[0])}
             />
           </div>
           <div className='mb-4'>

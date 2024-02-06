@@ -13,7 +13,7 @@ const Notification = () => {
             type === 'success'
               ? 'text-green-600 bg-green-50 border-green-600'
               : 'text-red-600 bg-red-50 border-red-600'
-          } flex items-center p-4 mb-4 font-semibold text-base border-t-4 absolute  bottom-8 right-8 py-5`}
+          } flex items-center p-4 mb-4 font-semibold text-base border-l-4 absolute  bottom-12 right-12 py-5`}
           role='alert'
         >
           <svg

@@ -1,4 +1,4 @@
-import CreateForm from '@/app/components/ui/admin/CreateForm';
+import CreateForm from '@/app/components/admin/CreateForm';
 
 const CreatePage = async () => {
   return (
