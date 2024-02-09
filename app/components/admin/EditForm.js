@@ -64,7 +64,7 @@ const EditForm = ({ item }) => {
           <div className='mb-4'>
             <label
               className='block text-sm font-semibold mb-2'
-              htmlFor=''
+              htmlFor='slugForm'
             >
               Slug
             </label>
@@ -74,15 +74,16 @@ const EditForm = ({ item }) => {
               placeholder='apple-phone-12356'
               type='text'
               name='slug'
-              autocomplete='off'
+              autoComplete='off'
               onChange={handleChange}
               values={values.slug}
+              id='slugForm'
             />
           </div>
           <div className='mb-4'>
             <label
               className='block text-sm font-semibold mb-2'
-              htmlFor=''
+              htmlFor='typeForm'
             >
               Tipo
             </label>
@@ -91,16 +92,17 @@ const EditForm = ({ item }) => {
               required
               placeholder='phone'
               type='text'
-              autocomplete='off'
+              autoComplete='off'
               name='type'
               onChange={handleChange}
               values={values.type}
+              id='typeForm'
             />
           </div>
           <div className='mb-4'>
             <label
               className='block text-sm font-semibold mb-2'
-              htmlFor=''
+              htmlFor='titleForm'
             >
               Título
             </label>
@@ -112,12 +114,13 @@ const EditForm = ({ item }) => {
               value={values.title}
               name='title'
               onChange={handleChange}
+              id='titleForm'
             />
           </div>
           <div className='mb-4'>
             <label
               className='block text-sm font-semibold mb-2'
-              htmlFor=''
+              htmlFor='descriptionForm'
             >
               Descripción
             </label>
@@ -130,12 +133,13 @@ const EditForm = ({ item }) => {
               value={values.description}
               name='description'
               onChange={handleChange}
+              id='descriptionForm'
             />
           </div>
           <div className='mb-4'>
             <label
               className='block text-sm font-semibold mb-2'
-              htmlFor=''
+              htmlFor='stockFrom'
             >
               Stock
             </label>
@@ -147,12 +151,13 @@ const EditForm = ({ item }) => {
               type='number'
               name='inStock'
               onChange={handleChange}
+              id='stockFrom'
             />
           </div>
           <div className='mb-4'>
             <label
               className='block text-sm font-semibold mb-2'
-              htmlFor=''
+              htmlFor='priceForm'
             >
               Precio
             </label>
@@ -164,13 +169,14 @@ const EditForm = ({ item }) => {
               name='price'
               onChange={handleChange}
               values={values.price}
+              id='priceForm'
             />
           </div>
 
           <div className='mb-4'>
             <label
               className='block text-sm font-semibold mb-2'
-              htmlFor=''
+              htmlFor='imgForm'
             >
               Imagen
             </label>
@@ -181,6 +187,7 @@ const EditForm = ({ item }) => {
               accept='.png, .jpg, .webp'
               name='image'
               onChange={(e) => setFile(e.target.files[0])}
+              id='imgForm'
             />
           </div>
           <div className='mb-4'>
