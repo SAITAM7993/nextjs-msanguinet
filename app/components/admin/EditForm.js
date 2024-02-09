@@ -5,6 +5,7 @@ import GoBack from '../ui/GoBack';
 import { db, storage } from '@/app/firebase/config';
 import { doc, updateDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import Image from 'next/image';
 // import Notification from '../ui/Notification';
 
 // import NotificationContext from '../context/NotificationContext';
@@ -36,7 +37,7 @@ const updateProduct = async (slug, values, file) => {
   }).then(() => alert('prod modificado'));
 };
 const EditForm = ({ item }) => {
-  const { title, description, inStock, price, type, image } = item;
+  const { title, description, inStock, price, type, image, slug } = item;
   const [values, setValues] = useState({
     title,
     description,
@@ -44,6 +45,7 @@ const EditForm = ({ item }) => {
     price,
     type,
     image,
+    slug,
   });
   const [file, setFile] = useState(null);
 
@@ -76,7 +78,7 @@ const EditForm = ({ item }) => {
               name='slug'
               autoComplete='off'
               onChange={handleChange}
-              values={values.slug}
+              value={values.slug}
               id='slugForm'
             />
           </div>
@@ -95,7 +97,7 @@ const EditForm = ({ item }) => {
               autoComplete='off'
               name='type'
               onChange={handleChange}
-              values={values.type}
+              value={values.type}
               id='typeForm'
             />
           </div>
@@ -145,7 +147,7 @@ const EditForm = ({ item }) => {
             </label>
             <input
               className='w-full px-3 py-2 border rounded-lg bh-gray-800 focus:border-blue-500'
-              values={values.inStock}
+              value={values.inStock}
               required
               placeholder='120'
               type='number'
@@ -168,7 +170,7 @@ const EditForm = ({ item }) => {
               type='number'
               name='price'
               onChange={handleChange}
-              values={values.price}
+              value={values.price}
               id='priceForm'
             />
           </div>
@@ -180,15 +182,25 @@ const EditForm = ({ item }) => {
             >
               Imagen
             </label>
-            <input
-              className='w-full px-3 py-2 border rounded-lg bh-gray-800 focus:border-blue-500'
-              required
-              type='file'
-              accept='.png, .jpg, .webp'
-              name='image'
-              onChange={(e) => setFile(e.target.files[0])}
-              id='imgForm'
-            />
+            <div className='flex gap-5'>
+              <Image
+                className='rounded-t-xl'
+                alt={item.title}
+                src={item.image}
+                width={150}
+                height={150}
+                style={{ objectFit: 'contain' }}
+              ></Image>
+              <input
+                className='w-full px-3 py-2 border rounded-lg bh-gray-800 focus:border-blue-500'
+                required
+                type='file'
+                accept='.png, .jpg, .webp'
+                name='image'
+                onChange={(e) => setFile(e.target.files[0])}
+                id='imgForm'
+              />
+            </div>
           </div>
           <div className='mb-4'>
             <Boton

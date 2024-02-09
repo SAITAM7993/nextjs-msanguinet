@@ -81,9 +81,9 @@ const ProductsTable = async () => {
               className='border-b'
             >
               <td className='p-2 '>
-                {item.slug == 1 ? (
+                {item.slug == 2 ? (
                   <Image
-                    // src={`/images/products/${item.image}`}
+                    // src={`/images/products/${item.image}` catualmente esta este if porque sino rompe.. cuando suba todas las img a firebase lo quito}
                     src={item.image}
                     alt={item.title}
                     width={100}
