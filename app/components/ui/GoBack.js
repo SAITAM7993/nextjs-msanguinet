@@ -7,7 +7,6 @@ const GoBack = ({ ...args }) => {
 
   return (
     <Boton
-      className=''
       onClick={() => router.back()}
       {...args}
     >

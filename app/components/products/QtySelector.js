@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Counter from '../ui/Counter';
 import Boton from '../ui/Boton';
 import Link from 'next/link';
-import Alert from '../ui/Notification';
 import { useCartContext } from '../context/CartContext';
 import Notification from '../ui/Notification';
 import { useContext } from 'react';

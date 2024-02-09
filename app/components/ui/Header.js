@@ -16,7 +16,7 @@ const Header = () => {
       <div className='flex mx-5'>
         <CartWidget />
         <Profile />
-        <Link href={'/admin/edit'}>
+        <Link href={'/admin'}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'

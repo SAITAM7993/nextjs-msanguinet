@@ -1,4 +1,4 @@
-import LoginForm from '../components/ui/LoginForm';
+import LoginForm from '../components/auth/LoginForm';
 export const metadata = {
   title: 'Login',
   description: 'Página dpara hacer login inicial',

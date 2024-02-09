@@ -73,6 +73,40 @@ const CreateForm = () => {
               className='block text-sm font-semibold mb-2'
               htmlFor=''
             >
+              Slug
+            </label>
+            <input
+              className='w-full px-3 py-2 border rounded-lg bh-gray-800 focus:border-blue-500'
+              required
+              placeholder='apple-phone-12356'
+              type='text'
+              name='slug'
+              onChange={handleChange}
+              values={values.slug}
+            />
+          </div>
+          <div className='mb-4'>
+            <label
+              className='block text-sm font-semibold mb-2'
+              htmlFor=''
+            >
+              Tipo
+            </label>
+            <input
+              className='w-full px-3 py-2 border rounded-lg bh-gray-800 focus:border-blue-500'
+              required
+              placeholder='phone'
+              type='text'
+              name='type'
+              onChange={handleChange}
+              values={values.type}
+            />
+          </div>
+          <div className='mb-4'>
+            <label
+              className='block text-sm font-semibold mb-2'
+              htmlFor=''
+            >
               Título
             </label>
             <input
@@ -138,40 +172,6 @@ const CreateForm = () => {
             />
           </div>
 
-          <div className='mb-4'>
-            <label
-              className='block text-sm font-semibold mb-2'
-              htmlFor=''
-            >
-              Tipo
-            </label>
-            <input
-              className='w-full px-3 py-2 border rounded-lg bh-gray-800 focus:border-blue-500'
-              required
-              placeholder='phone'
-              type='text'
-              name='type'
-              onChange={handleChange}
-              values={values.type}
-            />
-          </div>
-          <div className='mb-4'>
-            <label
-              className='block text-sm font-semibold mb-2'
-              htmlFor=''
-            >
-              Slug
-            </label>
-            <input
-              className='w-full px-3 py-2 border rounded-lg bh-gray-800 focus:border-blue-500'
-              required
-              placeholder='apple-phone-12356'
-              type='text'
-              name='slug'
-              onChange={handleChange}
-              values={values.slug}
-            />
-          </div>
           <div className='mb-4'>
             <label
               className='block text-sm font-semibold mb-2'

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import GoBack from '../ui/GoBack';
+import LogoutButton from './LogoutButton';
 const ProductsTable = async () => {
   const items = await fetch(`http://localhost:3000/api/productos/todos`, {
     cache: 'no-store',
@@ -11,9 +12,11 @@ const ProductsTable = async () => {
     <div className='w-full p-5 bg-white rounded-3xl shadow-xl border border-slate-200'>
       <div className='text-right my-8'>
         <GoBack className='button-secondary-small mx-3' />
+        <LogoutButton className='' />
+
         <Link
           href={'/admin/create'}
-          className='button-primary-small'
+          className='button-primary'
         >
           Nuevo producto +
         </Link>
