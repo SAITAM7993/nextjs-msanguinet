@@ -5,10 +5,13 @@ export const metadata = {
 };
 const EditPage = async ({ params }) => {
   const { slug } = params;
-  const item = await fetch(`http://localhost:3000/api/producto/${slug}`, {
-    cache: 'no-store',
-    next: { tags: ['productos'] },
-  }).then((res) => res.json());
+  const item = await fetch(
+    `https://nextjs-msanguinet.vercel.app/api/producto/${slug}`,
+    {
+      cache: 'no-store',
+      next: { tags: ['productos'] },
+    }
+  ).then((res) => res.json());
   return (
     <div>
       <EditForm item={item} />
