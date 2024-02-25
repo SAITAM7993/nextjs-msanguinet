@@ -1,9 +1,4 @@
 //detalle de producto
-
-// export const metadata = {
-//   title: 'EIPI - Detalle de producto',
-//   description: 'Detalle de producto',
-// };
 import { Suspense } from 'react';
 import Loader from '@/app/components/ui/Loader';
 import ProductDetail from '@/app/components/products/ProductDetail';

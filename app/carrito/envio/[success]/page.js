@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+
 const Sucesss = ({ params }) => {
   const order = useParams(params);
   return (

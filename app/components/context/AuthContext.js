@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
         setUser({ logged: false, email: null, uid: null });
       }
     });
-  }, []);
+  }, [router]);
 
   return (
     <AuthContext.Provider

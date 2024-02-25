@@ -10,7 +10,7 @@ export default function GlobalError({ error, reset }) {
 
   return (
     <div className='continer m-auto text-center'>
-      <p className='title2'> Algo no salio bien</p>
+      <p className='title2'> Algo no salió bien</p>
       <Boton
         className='button-primary'
         onClick={() => reset()}

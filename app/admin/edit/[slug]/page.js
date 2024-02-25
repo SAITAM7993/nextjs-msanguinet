@@ -1,4 +1,8 @@
 import EditForm from '@/app/components/admin/EditForm';
+export const metadata = {
+  title: 'EIPI - Admim editar producto',
+  description: 'página de edición de producto',
+};
 const EditPage = async ({ params }) => {
   const { slug } = params;
   const item = await fetch(`http://localhost:3000/api/producto/${slug}`, {

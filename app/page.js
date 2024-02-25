@@ -2,7 +2,7 @@ export const metadata = {
   title: 'EIPI - Inicio',
   description: 'Home, inicio de web EIPI',
 };
-
+import Image from 'next/image';
 import Link from 'next/link';
 import Boton from './components/ui/Boton';
 
@@ -26,10 +26,19 @@ const Home = () => {
               </Link>
             </div>
             <div className='hidden lg:mt-0 lg:col-span-5 lg:flex'>
-              <img
+              <Image
+                alt={'banner'}
+                src={
+                  'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png'
+                }
+                width={454}
+                height={340}
+                style={{ objectFit: 'contain' }}
+              />
+              {/* <img
                 src='https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png'
                 alt='mockup'
-              />
+              /> */}
             </div>
           </div>
         </section>

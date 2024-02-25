@@ -1,6 +1,7 @@
 import ProductsTable from '@/app/components/admin/ProductsTable';
 import { Suspense } from 'react';
 import Loader from '@/app/components/ui/Loader';
+
 const Admin = () => {
   return (
     <div className='container w-full'>

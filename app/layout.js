@@ -14,6 +14,12 @@ export async function generateMetadata({ params, searchParams }, parent) {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
+      <head>
+        <link
+          rel='shortcut icon'
+          href='/images/favicon.ico'
+        />
+      </head>
       <body className='flex flex-col min-h-screen'>
         <AuthProvider>
           <NotificationProvider>
