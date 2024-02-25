@@ -4,10 +4,13 @@ import GoBack from '../ui/GoBack';
 import LogoutButton from './LogoutButton';
 
 const ProductsTable = async () => {
-  const items = await fetch(`http://localhost:3000/api/productos/todos`, {
-    cache: 'no-store',
-    next: { tags: ['productos'] }, //esta peticion se va a catchear con el tag productos
-  }).then((r) => r.json());
+  const items = await fetch(
+    `https://nextjs-msanguinet.vercel.app/api/productos/todos`,
+    {
+      cache: 'no-store',
+      next: { tags: ['productos'] }, //esta peticion se va a catchear con el tag productos
+    }
+  ).then((r) => r.json());
 
   return (
     <div className='w-full p-5 bg-white rounded-3xl shadow-xl border border-slate-200'>
