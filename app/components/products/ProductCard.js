@@ -12,7 +12,7 @@ const ProductCard = ({ item }) => {
         <Image
           className='rounded-t-xl'
           alt={item.title}
-          src={`/images/products/${item.image}`}
+          src={item.image}
           width={300}
           height={300}
           style={{ objectFit: 'contain' }}

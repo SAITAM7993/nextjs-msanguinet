@@ -10,8 +10,9 @@ import { db, storage } from '@/app/firebase/config';
 import { useContext } from 'react';
 import NotificationContext from '../context/NotificationContext';
 import Notification from '../ui/Notification';
-
+import { useRouter } from 'next/navigation';
 const CreateForm = () => {
+  const router = useRouter();
   const { notificationHandler } = useContext(NotificationContext);
   function handlerNotificationOK() {
     notificationHandler({
@@ -23,20 +24,22 @@ const CreateForm = () => {
     //para img, subimos un doc a firestore, es una url a un archivo.
     //subimos una img, obtenemos la url y luego guardamos esa url en el atr image de productos
     const storageRef = ref(storage, values.slug);
-    // const metadata = {
-    //   contentType: 'image/webp',
-    // };
-    // const fileSnapshot = await uploadBytes(storageRef, file, metadata);
+
     const fileSnapshot = await uploadBytes(storageRef, file);
     const fileURL = await getDownloadURL(fileSnapshot.ref);
     //fin para img
 
     const docRef = doc(db, 'productos', values.slug);
-    return setDoc(docRef, { ...values, image: fileURL })
-      .then(() => handlerNotificationOK())
+    return await setDoc(docRef, { ...values, image: fileURL })
+      .then(
+        () => handlerNotificationOK(),
+        setTimeout(() => {
+          router.push('/admin');
+        }, 3000)
+      )
+
       .catch((err) => {
         console.log('Error: ', err);
-        // revisar esto, no me funciona, siempre da OK el setDoc pero no
       });
   };
 
@@ -57,6 +60,13 @@ const CreateForm = () => {
       [e.target.name]: e.target.value,
     });
   };
+  //esto porque sino lo guardaba como string en firebase
+  const handleChangeNumeric = (e) => {
+    setValues({
+      ...values,
+      [e.target.name]: e.target.valueAsNumber,
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -70,7 +80,7 @@ const CreateForm = () => {
         <form onSubmit={handleSubmit}>
           <div className='mb-4'>
             <label
-              className='block text-sm font-semibold mb-2'
+              className='block text-sm font-semibold mb-4'
               htmlFor=''
             >
               Slug
@@ -87,7 +97,7 @@ const CreateForm = () => {
           </div>
           <div className='mb-4'>
             <label
-              className='block text-sm font-semibold mb-2'
+              className='block text-sm font-semibold mb-4'
               htmlFor=''
             >
               Tipo
@@ -104,7 +114,7 @@ const CreateForm = () => {
           </div>
           <div className='mb-4'>
             <label
-              className='block text-sm font-semibold mb-2'
+              className='block text-sm font-semibold mb-4'
               htmlFor=''
             >
               Título
@@ -121,7 +131,7 @@ const CreateForm = () => {
           </div>
           <div className='mb-4'>
             <label
-              className='block text-sm font-semibold mb-2'
+              className='block text-sm font-semibold mb-4'
               htmlFor=''
             >
               Descripción
@@ -139,7 +149,7 @@ const CreateForm = () => {
           </div>
           <div className='mb-4'>
             <label
-              className='block text-sm font-semibold mb-2'
+              className='block text-sm font-semibold mb-4'
               htmlFor=''
             >
               Stock
@@ -150,13 +160,13 @@ const CreateForm = () => {
               placeholder='120'
               type='number'
               name='inStock'
-              onChange={handleChange}
+              onChange={handleChangeNumeric}
               values={values.inStock}
             />
           </div>
           <div className='mb-4'>
             <label
-              className='block text-sm font-semibold mb-2'
+              className='block text-sm font-semibold mb-4'
               htmlFor=''
             >
               Precio
@@ -167,14 +177,14 @@ const CreateForm = () => {
               placeholder='599.00'
               type='number'
               name='price'
-              onChange={handleChange}
+              onChange={handleChangeNumeric}
               values={values.price}
             />
           </div>
 
           <div className='mb-4'>
             <label
-              className='block text-sm font-semibold mb-2'
+              className='block text-sm font-semibold mb-4'
               htmlFor=''
             >
               Imagen
@@ -193,11 +203,11 @@ const CreateForm = () => {
               type='submit'
               className='button-primary w-full'
             >
-              Guardar
+              Crear producto
             </Boton>
-            <GoBack className='button-secondary w-full' />
           </div>
         </form>
+        <GoBack className='button-secondary w-full' />
       </div>
     </>
   );

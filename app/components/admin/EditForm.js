@@ -6,17 +6,9 @@ import { db, storage } from '@/app/firebase/config';
 import { doc, updateDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import Image from 'next/image';
-// import Notification from '../ui/Notification';
-
-// import NotificationContext from '../context/NotificationContext';
-// const { notificationHandler } = useContext(NotificationContext);
-// function handlerNotificationOK() {
-//   notificationHandler({
-//     type: 'success',
-//     message: 'Producto modificado correctamente',
-//   });
-// }
-
+import Notification from '../ui/Notification';
+import NotificationContext from '../context/NotificationContext';
+import { useRouter } from 'next/navigation';
 const updateProduct = async (slug, values, file) => {
   let fileUrl = values.image;
   if (file) {
@@ -34,9 +26,18 @@ const updateProduct = async (slug, values, file) => {
     price: Number(values.price),
     type: values.type,
     image: fileUrl,
-  }).then(() => alert('prod modificado'));
+  });
 };
 const EditForm = ({ item }) => {
+  const router = useRouter();
+  const { notificationHandler } = useContext(NotificationContext);
+  function handlerNotificationOK() {
+    notificationHandler({
+      type: 'success',
+      message: 'Producto modificado correctamente',
+    });
+  }
+
   const { title, description, inStock, price, type, image, slug } = item;
   const [values, setValues] = useState({
     title,
@@ -52,20 +53,33 @@ const EditForm = ({ item }) => {
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
+
+  //esto porque sino lo guardaba como string en firebase
+  const handleChangeNumeric = (e) => {
+    setValues({
+      ...values,
+      [e.target.name]: e.target.valueAsNumber,
+    });
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await updateProduct(item.slug, values, file);
+    await updateProduct(item.slug, values, file).then(
+      () => handlerNotificationOK(),
+      setTimeout(() => {
+        router.push('/admin');
+      }, 3000)
+    );
   };
 
   return (
     <>
-      {/* <Notification /> */}
+      <Notification />
       <div className='max-w-2xl w-full mx-auto rounded-3xl shadow-xl bg-white p-12'>
         <h1 className='title1'>Editar producto</h1>
         <form onSubmit={handleSubmit}>
           <div className='mb-4'>
             <label
-              className='block text-sm font-semibold mb-2'
+              className=' text-sm font-semibold'
               htmlFor='slugForm'
             >
               Slug
@@ -82,9 +96,9 @@ const EditForm = ({ item }) => {
               id='slugForm'
             />
           </div>
-          <div className='mb-4'>
+          <div className='mb-2'>
             <label
-              className='block text-sm font-semibold mb-2'
+              className='block text-sm font-semibold'
               htmlFor='typeForm'
             >
               Tipo
@@ -101,9 +115,9 @@ const EditForm = ({ item }) => {
               id='typeForm'
             />
           </div>
-          <div className='mb-4'>
+          <div className='mb-2'>
             <label
-              className='block text-sm font-semibold mb-2'
+              className='block text-sm font-semibold'
               htmlFor='titleForm'
             >
               Título
@@ -119,7 +133,7 @@ const EditForm = ({ item }) => {
               id='titleForm'
             />
           </div>
-          <div className='mb-4'>
+          <div className='mb-2'>
             <label
               className='block text-sm font-semibold mb-2'
               htmlFor='descriptionForm'
@@ -138,9 +152,9 @@ const EditForm = ({ item }) => {
               id='descriptionForm'
             />
           </div>
-          <div className='mb-4'>
+          <div className='mb-2'>
             <label
-              className='block text-sm font-semibold mb-2'
+              className='block text-sm font-semibold'
               htmlFor='stockFrom'
             >
               Stock
@@ -152,13 +166,13 @@ const EditForm = ({ item }) => {
               placeholder='120'
               type='number'
               name='inStock'
-              onChange={handleChange}
+              onChange={handleChangeNumeric}
               id='stockFrom'
             />
           </div>
-          <div className='mb-4'>
+          <div className='mb-2'>
             <label
-              className='block text-sm font-semibold mb-2'
+              className='block text-sm font-semibold'
               htmlFor='priceForm'
             >
               Precio
@@ -169,15 +183,22 @@ const EditForm = ({ item }) => {
               placeholder='599.00'
               type='number'
               name='price'
-              onChange={handleChange}
+              onChange={handleChangeNumeric}
               value={values.price}
               id='priceForm'
             />
           </div>
 
-          <div className='mb-4'>
+          <label
+            class='block text-sm font-medium text-gray-900 dark:text-white'
+            for='file_input'
+          >
+            Upload file
+          </label>
+
+          <div className='mb-2'>
             <label
-              className='block text-sm font-semibold mb-2'
+              className='block text-sm font-semibold'
               htmlFor='imgForm'
             >
               Imagen
@@ -193,7 +214,6 @@ const EditForm = ({ item }) => {
               ></Image>
               <input
                 className='w-full px-3 py-2 border rounded-lg bh-gray-800 focus:border-blue-500'
-                required
                 type='file'
                 accept='.png, .jpg, .webp'
                 name='image'
@@ -202,16 +222,16 @@ const EditForm = ({ item }) => {
               />
             </div>
           </div>
-          <div className='mb-4'>
+          <div className='mb-2'>
             <Boton
               type='submit'
               className='button-primary w-full'
             >
               Guardar
             </Boton>
-            <GoBack className='button-secondary w-full' />
           </div>
         </form>
+        <GoBack className='button-secondary w-full' />
       </div>
     </>
   );

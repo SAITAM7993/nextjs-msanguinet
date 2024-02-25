@@ -4,7 +4,8 @@
 //   title: 'EIPI - Detalle de producto',
 //   description: 'Detalle de producto',
 // };
-
+import { Suspense } from 'react';
+import Loader from '@/app/components/ui/Loader';
 import ProductDetail from '@/app/components/products/ProductDetail';
 
 export async function generateMetadata({ params, searchParams }, parent) {
@@ -18,7 +19,9 @@ const Detail = ({ params }) => {
 
   return (
     <main className='container m-auto'>
-      <ProductDetail slug={producto} />
+      <Suspense fallback={<Loader message='Cargando detalle' />}>
+        <ProductDetail slug={producto} />
+      </Suspense>
     </main>
   );
 };

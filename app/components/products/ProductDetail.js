@@ -1,34 +1,42 @@
 'use client';
 //detalle de UN producto
-// import { mockData } from '../../data/products';
+
 import Image from 'next/image';
 import QtySelector from './QtySelector';
 import GoBack from '../ui/GoBack';
 
-const ProductDetail = async ({ slug }) => {
+const getProductDetail = async (slug) => {
   const item = await fetch(`http://localhost:3000/api/producto/${slug}`, {
     cache: 'no-store',
-    next: { revalidate: 0 }, //para que no se cachee una la respuesta y siempre este actualizada por si varia el stock
-  }).then((res) => res.json());
+    //para que no se cachee una la respuesta y siempre este actualizada por si varia el stock
+  });
+  if (!item.ok) {
+    throw new Error('Fallo en la petición de producto');
+  }
+  return item.json();
+};
+
+const ProductDetail = async ({ slug }) => {
+  const producto = await getProductDetail(slug);
 
   return (
     <div className='max-w-6xl m-auto bg-white p-20 w-full rounded-3xl border border-slate-300'>
       <section className='flex gap-20'>
-        <div className='relative basis-1/2'>
+        <div className='basis-1/2'>
           <Image
-            src={`/images/products/${item.image}`}
-            alt={item.title}
+            src={producto.image}
+            alt={producto.title}
             width={640}
             height={640}
           />
         </div>
         <div className='basis-1/2'>
-          <h2 className='title1'>{item.title}</h2>
+          <h2 className='title1'>{producto.title}</h2>
           <section className='my-5'>
-            <p className='text-black text-lg'>{item.description}</p>
+            <p className='text-black text-lg'>{producto.description}</p>
           </section>
-          <p className='text-4xl'>$ {item.price}</p>
-          <QtySelector item={item} />
+          <p className='text-4xl'>$ {producto.price}</p>
+          <QtySelector item={producto} />
           <GoBack className='button-secondary w-full' />
         </div>
       </section>

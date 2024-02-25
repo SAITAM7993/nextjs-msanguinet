@@ -7,8 +7,11 @@ import {
   signOut,
   signInWithPopup,
 } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '@/app/firebase/config';
 
 import { createContext, useContext, useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const AuthContext = createContext();
 
@@ -16,6 +19,8 @@ export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({ logged: false, email: null, uid: null });
+
+  const router = useRouter();
 
   const logout = async () => {
     await signOut(auth);
@@ -31,23 +36,28 @@ export const AuthProvider = ({ children }) => {
   const googleLogin = async () => {
     await signInWithPopup(auth, provider);
   };
-  //observador de estado
+
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       console.log(user);
       if (user) {
-        setUser({
-          logged: true,
-          email: user.email,
-          uid: user.uid,
-        });
+        const docRef = doc(db, 'roles', user.uid);
+        const userDoc = await getDoc(docRef);
+        if (userDoc.data()?.rol === 'admin') {
+          setUser({
+            logged: true,
+            email: user.email,
+            uid: user.uid,
+          });
+        } else {
+          router.push('/unauthorized');
+          logout();
+        }
       } else {
         setUser({ logged: false, email: null, uid: null });
       }
     });
   }, []);
-
-  //array de dep vacio para que se renderze solo en el montaje
 
   return (
     <AuthContext.Provider

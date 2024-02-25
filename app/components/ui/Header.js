@@ -15,8 +15,11 @@ const Header = () => {
       <Menu />
       <div className='flex mx-5'>
         <CartWidget />
-        <Profile />
-        <Link href={'/admin'}>
+        {/* <Profile /> */}
+        <Link
+          className='mx-5'
+          href={'/admin'}
+        >
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'

@@ -2,10 +2,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import GoBack from '../ui/GoBack';
 import LogoutButton from './LogoutButton';
+
 const ProductsTable = async () => {
   const items = await fetch(`http://localhost:3000/api/productos/todos`, {
     cache: 'no-store',
-    next: { tags: ['productos'] },
+    next: { tags: ['productos'] }, //esta peticion se va a catchear con el tag productos
   }).then((r) => r.json());
 
   return (
@@ -81,17 +82,12 @@ const ProductsTable = async () => {
               className='border-b'
             >
               <td className='p-2 '>
-                {item.slug == 2 ? (
-                  <Image
-                    // src={`/images/products/${item.image}` catualmente esta este if porque sino rompe.. cuando suba todas las img a firebase lo quito}
-                    src={item.image}
-                    alt={item.title}
-                    width={100}
-                    height={100}
-                  ></Image>
-                ) : (
-                  ''
-                )}
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  width={100}
+                  height={100}
+                ></Image>
               </td>
               <td className='p-2 truncate max-w-prose'>{item.title}</td>
               <td className='p-2'>{item.price}</td>
