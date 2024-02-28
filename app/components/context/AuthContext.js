@@ -26,11 +26,20 @@ export const AuthProvider = ({ children }) => {
     await signOut(auth);
   };
   const registerUser = async (values) => {
-    await createUserWithEmailAndPassword(auth, values.email, values.password);
+    await createUserWithEmailAndPassword(
+      auth,
+      values.email,
+      values.password
+    ).catch((error) =>
+      setUser({ logged: false, email: null, uid: null, error: error.message })
+    );
   };
 
   const loginUser = async (values) => {
-    await signInWithEmailAndPassword(auth, values.email, values.password);
+    await signInWithEmailAndPassword(auth, values.email, values.password).catch(
+      (error) =>
+        setUser({ logged: false, email: null, uid: null, error: error.message })
+    );
   };
 
   const googleLogin = async () => {
@@ -39,7 +48,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
-      console.log(user);
+      // console.log(user);
       if (user) {
         const docRef = doc(db, 'roles', user.uid);
         const userDoc = await getDoc(docRef);
@@ -48,13 +57,14 @@ export const AuthProvider = ({ children }) => {
             logged: true,
             email: user.email,
             uid: user.uid,
+            error: null,
           });
         } else {
           router.push('/unauthorized');
           logout();
         }
       } else {
-        setUser({ logged: false, email: null, uid: null });
+        setUser({ logged: false, email: null, uid: null, error: null });
       }
     });
   }, [router]);

@@ -4,7 +4,7 @@ import Boton from '../ui/Boton';
 import { useAuthContext } from '../context/AuthContext';
 
 const LoginForm = () => {
-  const { registerUser, loginUser, googleLogin } = useAuthContext();
+  const { registerUser, loginUser, googleLogin, user } = useAuthContext();
   const [values, setValues] = useState({ email: '', password: '' });
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -12,6 +12,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    user.error ? console.log(user.error) : console.log('ok');
   };
   return (
     <div className='fixed w-screen h-screen inset-0 z-10 flex justify-center items-center bg-slate-700 bg-opacity-25'>
@@ -77,6 +78,7 @@ const LoginForm = () => {
                 Registrarse
               </Boton>
             </div>
+            <p className='text-red-500 text-center'>{user.error}</p>
           </form>
         </div>
       </div>
