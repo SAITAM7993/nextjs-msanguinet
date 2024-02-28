@@ -17,7 +17,7 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     //para hacer un POST e ingresar los datos, le mandamos values que es lo que llenamos en el form
-    await fetch('http://localhost:3000/api/contacto', {
+    await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/contacto`, {
       method: 'POST',
       body: JSON.stringify(values),
     });
@@ -30,11 +30,12 @@ const ContactForm = () => {
         <div className='mb-4'>
           <label
             className='block text-sm font-semibold mb-2'
-            htmlFor=''
+            htmlFor='nameForm'
           >
             Nombre
           </label>
           <input
+            id='nameForm'
             name='name'
             className='w-full px-3 py-2 border rounded-lg bg-gray-50'
             placeholder='Matias Sanguinet'
@@ -46,11 +47,12 @@ const ContactForm = () => {
         <div className='mb-4'>
           <label
             className='block text-sm font-semibold mb-2'
-            htmlFor=''
+            htmlFor='phoneForm'
           >
             Celular
           </label>
           <input
+            id='phoneForm'
             name='phone'
             className='w-full px-3 py-2 border rounded-lg bg-gray-50'
             required
@@ -62,11 +64,12 @@ const ContactForm = () => {
         <div className='mb-4'>
           <label
             className='block text-sm font-semibold mb-2'
-            htmlFor=''
+            htmlFor='emailForm'
           >
             Mail
           </label>
           <input
+            id='emailForm'
             name='mail'
             className='w-full px-3 py-2 border rounded-lg bg-gray-50'
             required
@@ -79,11 +82,12 @@ const ContactForm = () => {
         <div className='mb-4'>
           <label
             className='block text-sm font-semibold mb-2'
-            htmlFor=''
+            htmlFor='messageForm'
           >
             Mensaje
           </label>
           <textarea
+            id='messageForm'
             name='message'
             className='w-full px-3 py-2 border rounded-lg bg-gray-50'
             required

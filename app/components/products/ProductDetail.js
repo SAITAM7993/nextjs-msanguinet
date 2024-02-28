@@ -7,7 +7,6 @@ import GoBack from '../ui/GoBack';
 
 const getProductDetail = async (slug) => {
   const item = await fetch(
-    // `${process.env.VERCEL_URL}/api/producto/${slug}`,
     `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/producto/${slug}`,
     {
       cache: 'no-store',

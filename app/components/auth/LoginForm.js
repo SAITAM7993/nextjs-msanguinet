@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Boton from '../ui/Boton';
 import { useAuthContext } from '../context/AuthContext';
-
+import GoBack from '../ui/GoBack';
 const LoginForm = () => {
   const { registerUser, loginUser, googleLogin, user } = useAuthContext();
   const [values, setValues] = useState({ email: '', password: '' });
@@ -26,11 +26,12 @@ const LoginForm = () => {
             <div className='mb-4'>
               <label
                 className='block text-sm font-semibold mb-2'
-                htmlFor=''
+                htmlFor='emailForm'
               >
                 Mail
               </label>
               <input
+                id='emailForm'
                 className='w-full px-3 py-2 border rounded-lg bg-gray-50'
                 required
                 placeholder='mail@mail.com'
@@ -43,11 +44,12 @@ const LoginForm = () => {
             <div className='mb-4'>
               <label
                 className='block text-sm font-semibold mb-2'
-                htmlFor=''
+                htmlFor='passwordForm'
               >
                 Contraseña
               </label>
               <input
+                id='passwordForm'
                 className='w-full px-3 py-2 border rounded-lg bg-gray-50 '
                 required
                 placeholder='********'
@@ -66,16 +68,19 @@ const LoginForm = () => {
                 Ingresar
               </Boton>
               <Boton
-                onClick={googleLogin}
-                className='button-primary-small w-full  mb-2'
-              >
-                Ingresar con Google
-              </Boton>
-              <Boton
                 onClick={() => registerUser(values)}
                 className='button-secondary-small w-full'
               >
                 Registrarse
+              </Boton>
+              <GoBack className='button-secondary-small w-full my-2 mb-5' />
+              <hr />
+
+              <Boton
+                onClick={googleLogin}
+                className='button-primary-small my-6 w-full'
+              >
+                Ingresar con Google
               </Boton>
             </div>
             <p className='text-red-500 text-center'>{user.error}</p>
