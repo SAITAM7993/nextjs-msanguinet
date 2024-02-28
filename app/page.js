@@ -35,10 +35,6 @@ const Home = () => {
                 height={340}
                 style={{ objectFit: 'contain' }}
               />
-              {/* <img
-                src='https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png'
-                alt='mockup'
-              /> */}
             </div>
           </div>
         </section>

@@ -5,7 +5,7 @@ import LogoutButton from './LogoutButton';
 
 const ProductsTable = async () => {
   const items = await fetch(
-    `https://nextjs-msanguinet.vercel.app/api/productos/todos`,
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/productos/todos`,
     {
       cache: 'no-store',
       next: { tags: ['productos'] }, //esta peticion se va a catchear con el tag productos
