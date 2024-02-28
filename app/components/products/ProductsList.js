@@ -3,7 +3,7 @@ import ProductCard from './ProductCard';
 
 const getProdByCategory = async (categoria) => {
   const items = await fetch(
-    `https://nextjs-msanguinet.vercel.app/api/productos/${categoria}`,
+    `${process.env.NEXT_PUBLIC_URL}/api/productos/${categoria}`,
     // `http://${process.env.VERCEL_URL}/api/productos/${categoria}`,
 
     {

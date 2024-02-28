@@ -7,13 +7,14 @@ import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyAxFJYIXiI8iYEWs-GUTHE63XxYtyhpWZQ',
-  authDomain: 'ecommerce-next-9279a.firebaseapp.com',
-  projectId: 'ecommerce-next-9279a',
-  storageBucket: 'ecommerce-next-9279a.appspot.com',
-  messagingSenderId: '956131450804',
-  appId: '1:956131450804:web:1fe98c8cceee350f251ce1',
+  apiKey: process.env.NEXT_PUBLIC_FB_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FB_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FB_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FB_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FB_MESSAGE_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FB_APP_ID,
 };
 
 // Initialize Firebase
