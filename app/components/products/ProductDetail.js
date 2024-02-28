@@ -8,7 +8,7 @@ import GoBack from '../ui/GoBack';
 const getProductDetail = async (slug) => {
   const item = await fetch(
     // `${process.env.VERCEL_URL}/api/producto/${slug}`,
-    `https://nextjs-msanguinet.vercel.app/api/producto/${slug}`,
+    `${process.env.VERCEL_URL}/api/producto/${slug}`,
     {
       cache: 'no-store',
       //para que no se cachee una la respuesta y siempre este actualizada por si varia el stock
