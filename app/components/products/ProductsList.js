@@ -3,7 +3,7 @@ import ProductCard from './ProductCard';
 
 const getProdByCategory = async (categoria) => {
   const items = await fetch(
-    `${process.env.VERCEL_URL}/api/productos/${categoria}`,
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/productos/${categoria}`,
     {
       cache: 'no-store',
       next: { tags: ['productos'] }, //esta peticion se va a catchear con el tag productos
