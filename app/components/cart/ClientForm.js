@@ -9,8 +9,6 @@ import { useRouter } from 'next/navigation';
 import Notification from '../ui/Notification';
 import NotificationContext from '../context/NotificationContext';
 const createOrder = async (values, items) => {
-  //PARA CONTROLAR STOCK AL INGRESAR ORDEN, DA ERROR.. index.esm2017.js:1168 Uncaught (in promise) TypeError: n.indexOf is not a function
-
   const docsPromises = items.map((item) => {
     const docRef = doc(db, 'productos', item.slug);
     return getDoc(docRef);
